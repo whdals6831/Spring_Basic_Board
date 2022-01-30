@@ -19,7 +19,7 @@ public class UiUtils {
         model.addAttribute("method", method);
         model.addAttribute("params", params);
 
-        return "templates/utils/message-redirect";
+        return "utils/message-redirect";
     }
 
 }
