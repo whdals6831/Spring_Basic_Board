@@ -25,6 +25,9 @@ public class BoardServiceImpl implements BoardService {
             queryResult = boardMapper.updateBoard(params);
         }
 
+//        BoardDTO board = null; // Transaction 동작 확인용
+//        System.out.println(board.getTitle());
+
         return (queryResult == 1) ? true : false;
     }
 

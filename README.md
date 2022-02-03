@@ -20,3 +20,4 @@ Reference Blog : https://congsong.tistory.com/
 
 ### 2022 / 2 / 3 (목)
 - AOP를 이용한 log기능 추가
+- Service에 원자성,일관성, 고립성, 지속성을 위한 트랜잭션 추가
