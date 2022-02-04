@@ -21,3 +21,6 @@ Reference Blog : https://congsong.tistory.com/
 ### 2022 / 2 / 3 (목)
 - AOP를 이용한 log기능 추가
 - Service에 원자성,일관성, 고립성, 지속성을 위한 트랜잭션 추가
+
+### 2022 / 2 / 4 (금)
+- Paging기능 추가 -> 생각보다 paging기능이 어렵다...

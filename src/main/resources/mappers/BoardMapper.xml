@@ -19,25 +19,25 @@
 
     <insert id="insertBoard" parameterType="BoardDTO">
         INSERT INTO tb_board ( <include refid="boardColumns"></include> )
-            VALUES (
-            #{idx}
-            , #{title}
-            , #{content}
-            , #{writer}
-            , 0
-            , IFNULL(#{noticeYn}, 'N')
-            , IFNULL(#{secretYn}, 'N')
-            , 'N'
-            , NOW()
-            , NULL
-            , NULL
+        VALUES (
+        #{idx}
+        , #{title}
+        , #{content}
+        , #{writer}
+        , 0
+        , IFNULL(#{noticeYn}, 'N')
+        , IFNULL(#{secretYn}, 'N')
+        , 'N'
+        , NOW()
+        , NULL
+        , NULL
         )
     </insert>
 
-<!--    select에서는 resultType을 명시해주는것을 볼 수 있다.-->
-   <select id="selectBoardDetail" parameterType="long" resultType="BoardDTO">
+    <!--    select에서는 resultType을 명시해주는것을 볼 수 있다.-->
+    <select id="selectBoardDetail" parameterType="long" resultType="BoardDTO">
         SELECT
-        <include refid="boardColumns" />
+        <include refid="boardColumns"/>
         FROM
         tb_board
         WHERE
@@ -70,7 +70,7 @@
 
     <select id="selectBoardList" parameterType="BoardDTO" resultType="BoardDTO">
         SELECT
-        <include refid="boardColumns" />
+        <include refid="boardColumns"/>
         FROM
         tb_board
         WHERE
@@ -79,6 +79,10 @@
         notice_yn ASC,
         idx DESC,
         insert_time DESC
+        LIMIT
+<!--        마이바티스에서 #{파라미터}는 여러 멤버를 가진 객체의 경우 Getter에 해당됩니다.-->
+<!--        startPage는 Criteria 클래스의 getStartPage 메서드의 리턴 값을 의미-->
+        #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
     </select>
 
     <select id="selectBoardTotalCount" parameterType="BoardDTO" resultType="int">
