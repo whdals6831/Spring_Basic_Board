@@ -25,6 +25,8 @@ class BoardServiceTests {
     @Autowired
     private BoardServiceImpl boardService;
 
+    BoardDTO params = new BoardDTO();
+
     @Test
     void registerBoardTest() {
         BoardDTO params = new BoardDTO();
@@ -74,7 +76,7 @@ class BoardServiceTests {
 
     @Test
     void getBoardListTest() {
-        List<BoardDTO> boardList = boardService.getBoardList();
+        List<BoardDTO> boardList = boardService.getBoardList(params);
         if (CollectionUtils.isEmpty(boardList) == false) {
             for (BoardDTO board : boardList) {
                 System.out.println("=========================");

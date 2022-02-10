@@ -21,6 +21,8 @@ public class MapperTests {
     @Autowired
     private BoardMapper boardMapper;
 
+    BoardDTO params = new BoardDTO();
+
     @Test
     public void testOfInsert() {
         BoardDTO params = new BoardDTO();
@@ -102,10 +104,11 @@ public class MapperTests {
 
     @Test
     public void testOfSelectBoardList() {
-        int boardTotalCount = boardMapper.selectBoardTotalCount();
+
+        int boardTotalCount = boardMapper.selectBoardTotalCount(params);
 
         if (boardTotalCount > 0) {
-            List<BoardDTO> boardList = boardMapper.selectBoardList();
+            List<BoardDTO> boardList = boardMapper.selectBoardList(params);
             if (CollectionUtils.isEmpty(boardList) == false) {
                 for (BoardDTO board : boardList) {
                     System.out.println("=========================");
