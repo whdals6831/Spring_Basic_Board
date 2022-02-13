@@ -40,3 +40,6 @@ Reference Blog : https://congsong.tistory.com/
 - 댓글 CRUD 기능 추가
 - 댓글 작성, 읽기, 수정 기능 REST API로 구현 -> 타임리프의 사용법이 아직 어색하다.
 - JSON으로 데이터를 주고받으면서 명사만을 사용하여 자원만을 표현하는 REST API의 작성법을 알게됨
+
+### 2022 / 2 / 13 (일)
+- 댓글 삭제 기능 구현

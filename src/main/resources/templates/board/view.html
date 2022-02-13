@@ -27,7 +27,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnModalCancel" class="btn btn-default waves-effect waves-light" data-dismiss="modal">취소하기</button>
-                    <button type="button" id="btnCommentUpdate" class="btn btn-primary waves-effect waves-light" onclick="updateComment()">수정하기</button>
+                    <button type="button" id="btnCommentUpdate" class="btn btn-primary waves-effect waves-light">수정하기</button>
                     <button type="button" id="btnCommentDelete" class="btn btn-danger waves-effect waves-light">삭제하기</button>
                 </div>
             </div>
@@ -222,6 +222,36 @@
                 });
             }
 
+            function deleteComment(idx) {
+
+                if (!confirm('댓글을 삭제하시겠어요?')) {
+                    return false;
+                }
+
+                var uri = [[ @{/comments/} ]] + idx;
+                var headers = {"Content-Type": "application/json", "X-HTTP-Method-Override": "DELETE"};
+
+                $.ajax({
+                    url: uri,
+                    type: "DELETE",
+                    headers: headers,
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.result == false) {
+                            alert("댓글 삭제에 실패하였습니다.");
+                            return false;
+                        }
+
+                        printCommentList();
+                        $("#commentModal").modal("hide");
+                    },
+                    error: function(xhr, status, error) {
+                        alert("에러가 발생하였습니다.");
+                        return false;
+                    }
+                });
+            }
+
 
 			function printCommentList() {
 
@@ -242,6 +272,10 @@
                             `;
                         });
 
+                        $(".notice-list").html(commentsHtml);
+                    } else {
+<!--                    댓글이 한개 존재할 때 삭제 후 댓글이 없도록 하기위해-->
+                        var commentsHtml = "";
                         $(".notice-list").html(commentsHtml);
                     }
                 }, "json");
