@@ -2,8 +2,6 @@ package com.example.board.controller;
 
 import com.example.board.constant.Method;
 import com.example.board.domain.BoardDTO;
-import com.example.board.paging.Criteria;
-import org.apache.ibatis.datasource.DataSourceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,8 @@ import com.example.board.service.BoardServiceImpl;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import util.UiUtils;
+import com.example.board.util.UiUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -40,10 +39,10 @@ public class BoardController extends UiUtils {
     }
 
     @PostMapping(value = "/board/register.do")
-    public String registerBoard(@ModelAttribute("params") final BoardDTO params, Model model) {
+    public String registerBoard(@ModelAttribute("params") final BoardDTO params, final MultipartFile[] files, Model model) {
         Map<String, Object> pagingParams = getPagingParams(params);
         try {
-            boolean isRegistered = boardService.registerBoard(params);
+            boolean isRegistered = boardService.registerBoard(params, files);
             if (isRegistered == false) {
                 // TODO => 게시글 등록에 실패하였다는 메시지를 전달
                 return showMessageWithRedirect("게시글 등록에 실패하였습니다.", "/board/list.do", Method.GET, pagingParams, model);

@@ -1,4 +1,4 @@
-package util;
+package com.example.board.util;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

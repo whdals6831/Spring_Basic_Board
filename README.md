@@ -43,3 +43,6 @@ Reference Blog : https://congsong.tistory.com/
 
 ### 2022 / 2 / 13 (일)
 - 댓글 삭제 기능 구현
+
+### 2022 / 2 / 23 (수)
+- 파일 업로드 기능 추가
